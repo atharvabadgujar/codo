@@ -4,20 +4,21 @@
 
 @layer base {
   html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
-  body { @apply bg-white font-sans text-slate-700 antialiased; }
+  body { @apply bg-white font-sans text-[15px] leading-relaxed text-muted antialiased; }
+  h1, h2, h3 { @apply text-ink; text-wrap: balance; }
+  p { text-wrap: pretty; }
   a, button { touch-action: manipulation; }
-  h1, h2 { text-wrap: balance; }
-  :focus-visible { @apply outline-2 outline-offset-2 outline-brand; }
+  :focus-visible { @apply outline-2 outline-offset-2 outline-accent; }
 }
 
 @layer components {
-  .eyebrow { @apply text-[11px] font-semibold uppercase tracking-[0.14em] text-brand; }
-  .h2 { @apply text-3xl font-bold leading-tight tracking-tight text-navy-900 sm:text-4xl; }
   .container-x { @apply mx-auto w-full max-w-6xl px-5 sm:px-8; }
-  .btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition focus-visible:outline; }
-  .btn-primary { @apply bg-gradient-to-r from-brand to-brand-violet text-white shadow-glow hover:brightness-110; }
-  .btn-ghost { @apply border border-white/25 text-white hover:bg-white/10; }
-  .text-gradient { @apply bg-gradient-to-r from-brand-soft to-teal-accent bg-clip-text text-transparent; }
+  .display { @apply font-serif font-semibold tracking-tight text-ink; }
+  .h2 { @apply font-serif text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-[2rem]; }
+  .btn { @apply inline-flex items-center justify-center rounded px-5 py-2.5 text-sm font-medium transition-colors; }
+  .btn-primary { @apply bg-ink text-white hover:bg-accent; }
+  .btn-secondary { @apply border border-ink/20 text-ink hover:border-ink; }
+  .rule { @apply border-t border-line; }
 }
 
 @media (prefers-reduced-motion: reduce) {

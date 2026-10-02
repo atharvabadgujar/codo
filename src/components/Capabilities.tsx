@@ -1,37 +1,29 @@
-import { ArrowRight } from 'lucide-react'
 import { capabilities, impact } from '../content'
-import { Icon, tones } from './Icon'
+import { Section } from './Section'
 
 export function Capabilities() {
   return (
-    <section id="product" className="bg-white py-16 sm:py-20">
-      <div className="container-x">
-        <p className="eyebrow">Key product capabilities</p>
-        <h2 className="h2 mt-3">From insights to action.<br className="hidden sm:block" /> Everything your retail teams need.</h2>
-        <ul id="capabilities" className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {capabilities.map((c) => (
-            <li key={c.title} className={`flex flex-col gap-2 rounded-2xl border p-5 ${tones[c.tone].card}`}>
-              <span className={`grid h-9 w-9 place-items-center rounded-lg ${tones[c.tone].chip}`}><Icon name={c.icon} /></span>
-              <h3 className="font-semibold text-navy-900">{c.title}</h3>
-              <p className="text-sm leading-relaxed text-slate-600">{c.body}</p>
-              <ArrowRight className={`mt-auto h-4 w-4 ${tones[c.tone].text}`} aria-hidden="true" />
-            </li>
+    <>
+      <Section id="product" title="From insight to action. Everything your retail teams need.">
+        <dl className="grid divide-y divide-line border-y border-line sm:grid-cols-2 sm:divide-y-0">
+          {capabilities.map((c, i) => (
+            <div key={c.title} className={`py-6 sm:px-6 ${i % 2 === 0 ? 'sm:border-r sm:border-line sm:pl-0' : 'sm:pr-0'} ${i > 1 ? 'sm:border-t sm:border-line' : ''}`}>
+              <dt className="font-serif text-xl font-semibold text-ink">{c.title}</dt>
+              <dd className="mt-2 text-sm">{c.body}</dd>
+            </div>
           ))}
-        </ul>
-
-        <div className="mt-16">
-          <p className="eyebrow">Business impact (illustrative)</p>
-          <h2 className="h2 mt-3">Smarter decisions. Measurable results.</h2>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {impact.map((i) => (
-              <li key={i.label} className={`rounded-2xl border p-5 ${tones[i.tone].card}`}>
-                <p className={`text-3xl font-extrabold tabular-nums ${tones[i.tone].text}`}>{i.value}</p>
-                <p className="mt-1 text-sm text-slate-600">{i.label}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </section>
+        </dl>
+      </Section>
+      <Section title="Smarter decisions, measurable results." intro="Typical ranges, shown for illustration.">
+        <dl className="grid grid-cols-2 border-y border-line">
+          {impact.map((i, n) => (
+            <div key={i.label} className={`py-6 ${n % 2 === 0 ? 'border-r border-line pr-6' : 'pl-6'} ${n > 1 ? 'border-t border-line' : ''}`}>
+              <dd className="font-serif text-3xl font-semibold tabular-nums text-ink">{i.value}</dd>
+              <dt className="mt-1 text-sm">{i.label}</dt>
+            </div>
+          ))}
+        </dl>
+      </Section>
+    </>
   )
 }

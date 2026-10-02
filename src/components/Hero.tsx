@@ -1,23 +1,17 @@
-import { ArrowRight, Play } from 'lucide-react'
 import { DashboardMockup } from './DashboardMockup'
 
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden bg-navy-900 text-white">
-      <div className="absolute inset-0 bg-[radial-gradient(60%_60%_at_85%_30%,rgba(91,108,255,.25),transparent),radial-gradient(40%_50%_at_10%_90%,rgba(45,212,191,.12),transparent)]" aria-hidden="true" />
-      <div className="container-x relative grid items-center gap-12 py-16 lg:grid-cols-[1fr_1.15fr] lg:py-24">
+    <section id="top">
+      <div className="container-x grid items-center gap-12 py-16 lg:grid-cols-[5fr_6fr] lg:gap-16 lg:py-24">
         <div>
-          <p className="eyebrow !text-white/60">The retail decision problem</p>
-          <h1 className="mt-4 text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl [text-wrap:balance]">
-            Retail has more data than ever. So why are decisions <span className="text-gradient">still reactive?</span>
-          </h1>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-white/80">
-            CoDo is an AI-powered Decision Intelligence Layer that turns internal retail data and external signals into explainable, prioritized business decisions —{' '}
-            <span className="text-teal-accent">and reducing the gap between insight to decision to action.</span>
+          <h1 className="display text-4xl leading-[1.1] sm:text-5xl">Retail has more data than ever. So why are decisions still reactive?</h1>
+          <p className="mt-6 max-w-lg text-base">
+            CoDo is an AI-powered decision intelligence layer. It turns internal retail data and external signals into explainable, prioritized business decisions, and closes the gap between insight and action.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#solution" className="btn btn-primary">See how CoDo works <ArrowRight className="h-4 w-4" aria-hidden="true" /></a>
-            <a href="#use-cases" className="btn btn-ghost">Explore use cases <Play className="h-4 w-4" aria-hidden="true" /></a>
+            <a href="#solution" className="btn btn-primary">See how CoDo works</a>
+            <a href="#use-cases" className="btn btn-secondary">Explore use cases</a>
           </div>
         </div>
         <DashboardMockup />

@@ -2,16 +2,20 @@
 export default {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
+    borderRadius: { none: '0', sm: '2px', DEFAULT: '4px', md: '4px', lg: '6px', full: '9999px' },
     extend: {
-      fontFamily: { sans: ['Plus Jakarta Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
-      colors: {
-        navy: { 950: '#070B1A', 900: '#0B1226', 800: '#111A36', 700: '#1B2547' },
-        brand: { DEFAULT: '#5B6CFF', soft: '#7C8BFF', violet: '#8B5CF6' },
-        teal: { accent: '#2DD4BF' },
+      fontFamily: {
+        sans: ['IBM Plex Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        serif: ['Source Serif 4', 'Georgia', 'serif'],
       },
-      boxShadow: {
-        card: '0 1px 2px rgba(15,23,42,.04), 0 8px 24px -8px rgba(15,23,42,.10)',
-        glow: '0 0 60px -10px rgba(91,108,255,.55)',
+      colors: {
+        ink: '#0E1A2B',
+        muted: '#566170',
+        line: '#DCE0E6',
+        surface: '#F5F6F8',
+        accent: { DEFAULT: '#1D4ED8', dark: '#1E40AF' },
+        good: '#15803D',
+        bad: '#B91C1C',
       },
     },
   },
