@@ -1,33 +1,71 @@
+import { motion } from 'framer-motion'
 import { decisions } from '../content'
 import { Section } from './Section'
 
 export function DecisionCards() {
   return (
-    <Section id="use-cases" title="From signals to decisions, across what matters.">
-      <div className="divide-y divide-line border-y border-line">
-        {decisions.map((d) => (
-          <article key={d.label} className="grid gap-6 py-8 first:pt-6 md:grid-cols-2 md:gap-8">
-            <div className="min-w-0">
-              <p className="text-sm text-muted">{d.label}</p>
-              <h3 className="mt-1 font-serif text-xl font-semibold leading-snug">{d.title}</h3>
-              <ul className="mt-4 list-disc space-y-1 pl-5 text-sm marker:text-line">
-                {d.signals.map((s) => <li key={s}>{s}</li>)}
-              </ul>
+    <Section
+      id="decisions"
+      label="Real-world decisions"
+      title="From signals to decisions. Across what matters."
+      bg="surface"
+    >
+      <div className="grid gap-5 md:grid-cols-3">
+        {decisions.map((d, i) => (
+          <motion.article
+            key={d.label}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.45, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="card flex flex-col gap-5 hover:shadow-card-hover transition-shadow"
+          >
+            {/* Label */}
+            <span className="text-xs font-semibold uppercase tracking-wider text-muted">{d.label}</span>
+
+            {/* Title */}
+            <h3 className="text-base font-semibold text-ink leading-snug">{d.title}</h3>
+
+            {/* Signals */}
+            <ul className="space-y-1.5 flex-1">
+              {d.signals.map((s) => (
+                <li key={s} className="flex items-start gap-2 text-sm text-muted">
+                  <svg className="mt-0.5 h-4 w-4 shrink-0 text-line" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  {s}
+                </li>
+              ))}
+            </ul>
+
+            {/* Recommendation box */}
+            <div className="rounded-lg border border-accent/20 bg-accent/5 p-3.5">
+              <p className="mb-1.5 flex items-center gap-1.5 text-xs font-semibold text-accent">
+                <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                CoDo Recommends
+              </p>
+              <p className="text-xs text-ink leading-relaxed">{d.rec}</p>
             </div>
-            <div className="min-w-0 space-y-4">
-              <div>
-                <p className="text-sm font-medium text-ink">CoDo recommends</p>
-                <p className="mt-1 text-sm">{d.rec}</p>
+
+            {/* Example chip */}
+            <div className="flex items-center justify-between gap-2 rounded-lg border border-line bg-white p-3">
+              <div className="min-w-0">
+                <p className="truncate text-sm font-semibold text-ink">{d.example.name}</p>
+                <p className="text-xs text-muted">{d.example.detail}</p>
               </div>
-              <dl className="flex items-center justify-between gap-4 rounded border border-line p-3 text-sm">
-                <div className="min-w-0">
-                  <dt className="font-medium text-ink">{d.example.name}</dt>
-                  <dd className="text-xs text-muted">{d.example.detail}</dd>
-                </div>
-                <dd className={`shrink-0 rounded-sm border px-2 py-0.5 text-xs font-medium ${d.example.bad ? 'border-bad/40 text-bad' : 'border-good/40 text-good'}`}>{d.example.status}</dd>
-              </dl>
+              <span
+                className={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-semibold ${
+                  d.example.bad
+                    ? 'bg-bad/10 text-bad'
+                    : 'bg-good/10 text-good'
+                }`}
+              >
+                {d.example.status}
+              </span>
             </div>
-          </article>
+          </motion.article>
         ))}
       </div>
     </Section>

@@ -1,15 +1,54 @@
+import { motion } from 'framer-motion'
 import type { ReactNode } from 'react'
 
-// Heading column on the left, content on the right, separated from the previous section by a hairline.
-export function Section({ id, title, intro, children }: { id?: string; title: ReactNode; intro?: string; children: ReactNode }) {
+interface SectionProps {
+  id?: string
+  label?: string
+  title: ReactNode
+  intro?: string
+  children: ReactNode
+  bg?: 'white' | 'surface'
+}
+
+export function Section({ id, label, title, intro, children, bg = 'white' }: SectionProps) {
   return (
-    <section id={id} className="rule">
-      <div className="container-x grid gap-10 py-16 lg:grid-cols-[5fr_7fr] lg:gap-16 lg:py-24">
-        <div>
-          <h2 className="h2 max-w-md">{title}</h2>
-          {intro && <p className="mt-5 max-w-md">{intro}</p>}
+    <section
+      id={id}
+      className={`section-divider ${bg === 'surface' ? 'bg-surface' : 'bg-white'}`}
+    >
+      <div className="container-x py-20 lg:py-28">
+        {/* Section header: two-column on large screens */}
+        <div className="mb-14 lg:mb-16 grid gap-6 lg:grid-cols-[1fr_1fr] lg:gap-12 lg:items-end">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.55 }}
+          >
+            {label && <p className="section-label mb-3">{label}</p>}
+            <h2 className="h2">{title}</h2>
+          </motion.div>
+          {intro && (
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.55, delay: 0.1 }}
+              className="text-muted leading-7 lg:self-end"
+            >
+              {intro}
+            </motion.p>
+          )}
         </div>
-        <div className="min-w-0">{children}</div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.55, delay: 0.15 }}
+        >
+          {children}
+        </motion.div>
       </div>
     </section>
   )
