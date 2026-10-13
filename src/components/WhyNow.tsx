@@ -29,7 +29,12 @@ export function WhyNow() {
       id="why"
       label="Why now?"
       title="Three powerful forces are creating a unique opportunity."
-      intro="The convergence of richer data, new AI capabilities and increasing complexity is making decision intelligence essential for modern retailers."
+      intro={
+        <>
+          The convergence of richer data, new AI capabilities and increasing complexity is making{' '}
+          <span className="hl">decision intelligence</span> essential for modern retailers.
+        </>
+      }
       bg="surface"
     >
       <div className="grid gap-6 sm:grid-cols-3">

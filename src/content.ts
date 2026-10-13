@@ -8,8 +8,6 @@ export const nav = [
   { label: 'Contact', href: '#contact' },
 ]
 
-export const INVESTOR_MAILTO = 'mailto:hello@codo.ai?subject=Investor%20Deck%20Request'
-
 export const whyNow = [
   { title: 'Richer retail data', body: 'POS, ERP, CRM and loyalty systems generate increasingly detailed customer, product and transaction data.' },
   { title: 'AI is changing what is possible', body: 'AI can move retailers beyond retrospective reporting towards decision support with explainable recommendations.' },
@@ -19,27 +17,39 @@ export const whyNow = [
 export const internalData = ['POS / ERP', 'CRM & loyalty', 'Inventory & supply', 'Product master', 'Sales & transactions']
 export const externalSignals = ['Weather & season', 'Holidays & events', 'Social listening', 'Supplier signals', 'Neighbourhood & geo']
 
+export type ImpactTone = 'good' | 'bad'
+
 export const decisions = [
   {
     label: 'Customer decision',
-    title: 'Re-engage high-value customers at risk',
-    signals: ['Purchase behaviour declining', 'Longer time since last purchase', 'Similar customers showing a drop'],
-    rec: 'Launch a personalised offer to high-value customers likely to churn in the next 30 days.',
-    example: { name: 'High-value customer', detail: 'Likely to churn', status: 'At risk', bad: true },
+    title: 'Re-engage 1,260 high-value customers before they’re lost',
+    signals: ['RFM score drops (5.2 → 2.8)', 'Last purchase > 75 days', 'Similar customers already inactive'],
+    rec: 'Launch a personalised re-engagement campaign and offer a ₹200 coupon code, valid for 10 days on their preferred product category (e.g. men’s t-shirts).',
+    impact: { value: '₹8.4 Lacs', note: 'Expected business impact', chip: '1,260 customers at risk', tone: 'bad' as ImpactTone },
   },
   {
     label: 'Product ageing decision',
-    title: 'Identify and clear ageing stock early',
-    signals: ['Slow-moving SKUs', 'Ageing inventory by region', 'Declining sales trend'],
-    rec: 'Run targeted promotions on ageing stock to clear inventory and free up space.',
-    example: { name: 'Sneakers, grey', detail: 'Ageing: 120 days', status: 'At risk', bad: true },
+    title: 'Clear ageing inventory across 18 products',
+    signals: [
+      '18 products have not sold as expected and have aged beyond 150 days',
+      'Continued holding increases carrying cost and risk of obsolescence',
+      'Similar products are moving faster in other categories with targeted markdown',
+      'These products are moving 2.3× slower than category average',
+    ],
+    rec: 'Run a targeted clearance campaign across 18 products with 20% discount.',
+    impact: { value: '₹11.2 Lacs', note: 'Inventory value blocked · 152 days ageing', chip: '18 products to clear', tone: 'bad' as ImpactTone },
   },
   {
     label: 'Product reorder decision',
-    title: 'Replenish the right products, in the right regions',
-    signals: ['Historical sales and trends', 'Weather and seasonal forecast', 'Regional demand signals'],
-    rec: 'Increase stock of lightweight jackets in West and South regions.',
-    example: { name: 'Lightweight jacket', detail: 'Category: outerwear', status: 'Reorder', bad: false },
+    title: 'Reorder 15 fast-moving products expected to stock out this week',
+    signals: [
+      '15 products are projected to stock out within 7 days based on current sales velocity',
+      'Demand has increased 22% in the last 4 weeks',
+      'Current stock cover is below the safe threshold',
+      'Supplier lead time ranges from 4–6 days',
+    ],
+    rec: 'Create a reorder for 4,280 units across 15 products in 4 outlets, prioritising items with the earliest stock-out date.',
+    impact: { value: '₹18.6 Lacs', note: 'Expected business impact', chip: '4 outlets · 15 products', tone: 'good' as ImpactTone },
   },
 ]
 
@@ -50,11 +60,15 @@ export const capabilities = [
   { title: 'CoDo Memory', body: 'Remembers your business context, so insights get smarter over time.' },
 ]
 
-export const impact = [
-  { value: '+8–15%', label: 'Increase in sales' },
-  { value: '−10–25%', label: 'Reduction in stock-outs' },
-  { value: '+5–12%', label: 'Improvement in marketing ROI' },
-  { value: '−15–30%', label: 'Lower inventory holding costs' },
+type ImpactStat = { value: string; label: string; body: string; unit?: string }
+
+export const impact: ImpactStat[] = [
+  { value: '+8–15%', label: 'Sales growth', body: 'Identify demand and revenue opportunities.' },
+  { value: '−10–25%', label: 'Lesser stockouts', body: 'Anticipate demand and replenish proactively.' },
+  { value: '+5–20%', label: 'Marketing ROI', body: 'Target the right customers with relevant offers.' },
+  { value: '−15–30%', label: 'Inventory holding costs', body: 'Reduce excess and ageing inventory.' },
+  { value: '2,125+', label: 'Customers reactivated', body: 'From an at-risk and lost customer pool of 15,000 customers.' },
+  { value: '40–60', unit: 'hours/pm', label: 'Decision productivity', body: 'Across cross-functional teams, including senior management, on a monthly basis.' },
 ]
 
 export const useCases = [
@@ -65,6 +79,18 @@ export const useCases = [
   { title: 'Operations', body: 'Smoother, more efficient stores.' },
 ]
 
+export const retailCategories = [
+  'Apparel & Fashion',
+  'Jewellery',
+  'Supermarkets',
+  'Grocery & Food Stores',
+  'Food & Beverage',
+  'Consumer Electronics',
+  'Footwear',
+  'Department Stores',
+  'Beauty & Personal Care',
+]
+
 export const testimonial = {
   quote: 'As a business, we have so many blind spots that CoDo can help us uncover and bring to our notice for a decision and action.',
   who: 'Business Head',
@@ -73,10 +99,25 @@ export const testimonial = {
 }
 
 export const team = [
-  { name: 'Tushar Rele', role: 'Founder & CEO', img: u('photo-1560250097-0b93528c311a'), linkedin: 'https://www.linkedin.com/',
-    bio: 'Built and scaled Blue Octopus, serving 250+ retail brands. Deep experience in retail loyalty, analytics and enterprise SaaS.' },
-  { name: 'Susamanta Dash', role: 'Co-founder', img: u('photo-1472099645785-5658abf4ff4e'), linkedin: 'https://www.linkedin.com/',
-    bio: 'Product, technology and AI leader with deep experience building scalable data and AI products.' },
-  { name: 'Sanjay Badhe', role: 'Strategic advisor', img: u('photo-1507003211169-0a1dd7228f2d'), linkedin: 'https://www.linkedin.com/',
-    bio: 'Experienced retail and consumer goods leader, advisor and investor. Brings deep industry expertise and guidance on go-to-market and scale.' },
+  {
+    name: 'Tushar Rele',
+    role: 'Founder & CEO',
+    img: '/tushar-rele.jpg',
+    linkedin: 'https://www.linkedin.com/in/tusharrele/',
+    bio: 'Having built Blue Ocktopus, a retail loyalty and analytics platform, he is now building CoDo to help retailers move from understanding data to making smarter business decisions. Tushar brings over two decades of experience across product, marketing, business development and strategic alliances in the BFSI domain.',
+  },
+  {
+    name: 'Sudipta Samanta',
+    role: 'Co-founder & CTO',
+    img: '/sudipta-samanta.jpg',
+    linkedin: 'https://www.linkedin.com/in/susamanta/',
+    bio: 'Sudipta leads CoDo’s technology vision and product engineering, building the foundation for an AI-powered retail decision intelligence platform. His prior experience in technology and engineering brings a focus on scalable systems, technical execution and translating complex requirements into practical solutions.',
+  },
+  {
+    name: 'Sanjay Badhe',
+    role: 'Mentor',
+    img: '',
+    linkedin: 'https://www.linkedin.com/in/sanjay-badhe-219a707/',
+    bio: 'Sanjay brings experience as a retail and marketing consultant, with a background in marketing, branding and retail strategy. As a mentor to CoDo, he helps shape the product’s strategic direction, strengthen its understanding of retailer needs, and explore partnerships that can accelerate adoption and deliver meaningful business value.',
+  },
 ]

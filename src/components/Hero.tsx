@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion'
+import { User } from 'lucide-react'
+import { team } from '../content'
 import { DashboardMockup } from './DashboardMockup'
 
 export function Hero() {
@@ -74,8 +76,8 @@ export function Hero() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </a>
-              <a href="#use-cases" className="btn btn-outline px-5 py-2.5 text-sm">
-                Explore use cases
+              <a href="#team" className="btn btn-outline px-5 py-2.5 text-sm">
+                People Behind CoDo
               </a>
             </motion.div>
 
@@ -87,17 +89,30 @@ export function Hero() {
               className="mt-10 flex items-center gap-4 border-t border-white/10 pt-8"
             >
               <div className="flex -space-x-2">
-                {['photo-1560250097-0b93528c311a', 'photo-1472099645785-5658abf4ff4e', 'photo-1507003211169-0a1dd7228f2d'].map((id) => (
-                  <img
-                    key={id}
-                    src={`https://images.unsplash.com/${id}?auto=format&fit=crop&w=40&h=40&q=70`}
-                    alt="Team member"
-                    className="h-9 w-9 rounded-full border-2 border-[#0E1117] object-cover"
-                  />
-                ))}
+                {team.map((m) =>
+                  m.img ? (
+                    <img
+                      key={m.name}
+                      src={m.img}
+                      alt={m.name}
+                      width={40}
+                      height={40}
+                      className="h-9 w-9 rounded-full border-2 border-[#0E1117] bg-[#0E1117] object-cover"
+                    />
+                  ) : (
+                    <span
+                      key={m.name}
+                      role="img"
+                      aria-label={m.name}
+                      className="grid h-9 w-9 place-items-center rounded-full border-2 border-[#0E1117] bg-white/10 text-white/50"
+                    >
+                      <User className="h-4 w-4" />
+                    </span>
+                  ),
+                )}
               </div>
               <div>
-                <p className="text-sm font-semibold text-white">Trusted by retail leaders</p>
+                <p className="text-sm font-semibold text-white">Validated by retail leaders</p>
                 <p className="text-xs text-white/40">Built for the world's fastest growing retailers</p>
               </div>
             </motion.div>

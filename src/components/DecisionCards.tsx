@@ -49,20 +49,18 @@ export function DecisionCards() {
               <p className="text-xs text-ink leading-relaxed">{d.rec}</p>
             </div>
 
-            {/* Example chip */}
-            <div className="flex items-center justify-between gap-2 rounded-lg border border-line bg-white p-3">
+            {/* Expected business impact */}
+            <div className="mt-auto flex items-center justify-between gap-3 rounded-lg border border-line bg-white p-3.5">
               <div className="min-w-0">
-                <p className="truncate text-sm font-semibold text-ink">{d.example.name}</p>
-                <p className="text-xs text-muted">{d.example.detail}</p>
+                <p className="font-serif text-xl font-bold tabular-nums text-ink">{d.impact.value}</p>
+                <p className="text-xs text-muted">{d.impact.note}</p>
               </div>
               <span
-                className={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-semibold ${
-                  d.example.bad
-                    ? 'bg-bad/10 text-bad'
-                    : 'bg-good/10 text-good'
+                className={`shrink-0 rounded-full px-2.5 py-1 text-xs font-semibold ${
+                  d.impact.tone === 'bad' ? 'bg-bad/10 text-bad' : 'bg-good/10 text-good'
                 }`}
               >
-                {d.example.status}
+                {d.impact.chip}
               </span>
             </div>
           </motion.article>

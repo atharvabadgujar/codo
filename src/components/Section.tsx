@@ -5,7 +5,7 @@ interface SectionProps {
   id?: string
   label?: string
   title: ReactNode
-  intro?: string
+  intro?: ReactNode
   children: ReactNode
   bg?: 'white' | 'surface'
 }

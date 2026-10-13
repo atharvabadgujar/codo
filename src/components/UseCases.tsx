@@ -1,5 +1,18 @@
 import { motion } from 'framer-motion'
-import { useCases, testimonial } from '../content'
+import {
+  ArrowRight,
+  Coffee,
+  Footprints,
+  Gem,
+  Headphones,
+  Shirt,
+  ShoppingBag,
+  ShoppingCart,
+  Sparkles,
+  Store,
+} from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
+import { useCases, retailCategories, testimonial } from '../content'
 import { Section } from './Section'
 
 const useCaseIcons = [
@@ -27,11 +40,28 @@ const useCaseIcons = [
   </svg>,
 ]
 
+const categoryStyles: { Icon: LucideIcon; icon: string }[] = [
+  { Icon: Shirt, icon: 'bg-blue-50 text-blue-600' },
+  { Icon: Gem, icon: 'bg-amber-50 text-amber-600' },
+  { Icon: ShoppingCart, icon: 'bg-emerald-50 text-emerald-600' },
+  { Icon: ShoppingBag, icon: 'bg-teal-50 text-teal-600' },
+  { Icon: Coffee, icon: 'bg-orange-50 text-orange-600' },
+  { Icon: Headphones, icon: 'bg-purple-50 text-purple-600' },
+  { Icon: Footprints, icon: 'bg-sky-50 text-sky-600' },
+  { Icon: Store, icon: 'bg-rose-50 text-rose-600' },
+  { Icon: Sparkles, icon: 'bg-pink-50 text-pink-600' },
+]
+
 export function UseCases() {
   return (
     <Section
+      id="use-cases"
       label="Use cases"
-      title="Decisions across every part of your business."
+      title={
+        <>
+          Decisions across every part of your <span className="hl">retail</span> business.
+        </>
+      }
       intro="CoDo surfaces the right action at the right time — from customer loyalty to operations."
     >
       {/* Use case cards */}
@@ -56,13 +86,49 @@ export function UseCases() {
         ))}
       </div>
 
+      {/* Retail categories */}
+      <div>
+        <p className="section-label mb-3">Retail categories</p>
+        <h3 className="font-sans text-2xl font-bold leading-tight tracking-tight text-ink sm:text-3xl">
+          Built for the way retail works.
+        </h3>
+        <p className="mt-4 max-w-3xl leading-7 text-muted">
+          CoDo adapts decision intelligence to the unique demands of every retail category — from
+          customer behaviour and product demand to inventory and store operations.
+        </p>
+
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {retailCategories.map((c, i) => {
+            const { Icon, icon } = categoryStyles[i]
+            return (
+              <motion.div
+                key={c}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.4, delay: (i % 3) * 0.06 }}
+                className="card group flex items-center gap-3.5 p-4 hover:shadow-card-hover"
+              >
+                <span className={`grid h-11 w-11 shrink-0 place-items-center rounded-lg ${icon}`}>
+                  <Icon className="h-5 w-5" />
+                </span>
+                <span className="min-w-0 flex-1 text-sm font-semibold text-ink">{c}</span>
+                <ArrowRight className="h-4 w-4 shrink-0 text-muted transition-transform duration-200 group-hover:translate-x-0.5" />
+              </motion.div>
+            )
+          })}
+        </div>
+
+        <p className="mt-8 text-center text-sm text-muted">And other specialty retail formats.</p>
+      </div>
+
       {/* Testimonial */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="relative overflow-hidden rounded-2xl border border-line bg-surface p-8 sm:p-10 lg:p-12"
+        className="relative mt-14 overflow-hidden rounded-2xl border border-line bg-surface p-8 sm:p-10 lg:p-12"
       >
         <div className="pointer-events-none absolute right-0 top-0 h-48 w-48 rounded-full bg-accent/5 blur-3xl" />
         <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-10">

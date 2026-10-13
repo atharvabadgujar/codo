@@ -3,20 +3,21 @@ import { internalData, externalSignals } from '../content'
 import { Section } from './Section'
 
 function DataList({ title, items, side }: { title: string; items: string[]; side: 'left' | 'right' }) {
+  const right = side === 'right'
   return (
-    <div>
+    <div className={right ? 'text-right' : 'text-left'}>
       <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-muted">{title}</p>
       <ul className="space-y-2">
         {items.map((item) => (
           <li
             key={item}
-            className={`flex items-center gap-3 rounded-lg border border-line bg-white px-4 py-3 text-sm font-medium text-ink shadow-card ${
-              side === 'right' ? 'flex-row-reverse text-right' : ''
+            className={`group flex items-center gap-3 rounded-lg border border-line bg-white px-4 py-3 text-sm font-medium text-ink shadow-card transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-card-hover ${
+              right ? 'flex-row-reverse' : ''
             }`}
           >
             <span
-              className={`h-2 w-2 shrink-0 rounded-full ${
-                side === 'left' ? 'bg-blue-400' : 'bg-purple-400'
+              className={`h-2 w-2 shrink-0 rounded-full transition-colors duration-200 group-hover:bg-accent ${
+                right ? 'bg-purple-400' : 'bg-blue-400'
               }`}
             />
             {item}
@@ -34,8 +35,9 @@ export function Solution() {
       label="The solution"
       title={
         <>
-          CoDo — Your AI-powered{' '}
-          <span className="text-gradient-accent">Decision Intelligence Layer.</span>
+          CoDo: Your{' '}
+          <span className="text-gradient-accent">AI-powered Decision Intelligence Layer</span> for your
+          Retail Business
         </>
       }
       intro="CoDo brings together your internal retail data with external signals, finds meaningful patterns and delivers clear, explainable recommendations — so your teams can make faster, smarter and more profitable decisions."

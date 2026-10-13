@@ -1,14 +1,18 @@
 import { motion } from 'framer-motion'
+import { ExternalLink, User } from 'lucide-react'
 import { team } from '../content'
 import { Section } from './Section'
-import { ExternalLink } from 'lucide-react'
 
 export function Team() {
   return (
     <Section
       id="team"
-      label="Founder, Co-founder & Strategic Advisor"
-      title="Built by a team that understands retail."
+      label="Founder, Co-founder & Mentor"
+      title={
+        <>
+          Built by a team that understands <span className="hl">retail</span>.
+        </>
+      }
       bg="surface"
     >
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -23,11 +27,23 @@ export function Team() {
           >
             {/* Photo + name row */}
             <div className="flex items-center gap-4 mb-4">
-              <img
-                src={m.img}
-                alt={m.name}
-                className="h-14 w-14 rounded-full border-2 border-line object-cover shadow-sm shrink-0"
-              />
+              {m.img ? (
+                <img
+                  src={m.img}
+                  alt={m.name}
+                  width={56}
+                  height={56}
+                  className="h-14 w-14 rounded-full border-2 border-line bg-white object-cover shadow-sm shrink-0"
+                />
+              ) : (
+                <span
+                  role="img"
+                  aria-label={m.name}
+                  className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-surface-2 text-muted ring-1 ring-line"
+                >
+                  <User className="h-6 w-6" />
+                </span>
+              )}
               <div className="min-w-0">
                 <h3 className="font-semibold text-ink truncate">{m.name}</h3>
                 <p className="text-sm text-muted">{m.role}</p>

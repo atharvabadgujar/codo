@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
-import { nav, INVESTOR_MAILTO } from '../content'
+import { nav } from '../content'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export function Navbar() {
@@ -23,17 +23,14 @@ export function Navbar() {
     >
       <div className="container-x flex h-[4.5rem] items-center justify-between">
         {/* Logo */}
-        <a
-          href="#top"
-          aria-label="CoDo home"
-          className={`flex items-center gap-2 font-serif text-xl font-bold tracking-tight transition-colors ${
-            scrolled ? 'text-ink' : 'text-white'
-          }`}
-        >
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent text-white text-sm font-bold shadow">
-            C
-          </span>
-          CoDo
+        <a href="#top" aria-label="CoDo home" className="flex items-center">
+          <img
+            src={scrolled ? '/logo-on-light.png' : '/logo-on-dark.png'}
+            alt="CoDo"
+            width={458}
+            height={192}
+            className="h-8 w-auto"
+          />
         </a>
 
         {/* Desktop nav */}
@@ -50,13 +47,6 @@ export function Navbar() {
             </a>
           ))}
         </nav>
-
-        <a
-          href={INVESTOR_MAILTO}
-          className="btn btn-primary hidden text-sm lg:inline-flex"
-        >
-          Request Investor Deck
-        </a>
 
         <button
           className={`p-2 lg:hidden transition-colors ${scrolled ? 'text-ink' : 'text-white'}`}
@@ -90,11 +80,6 @@ export function Navbar() {
                   {n.label}
                 </a>
               ))}
-              <div className="pt-4">
-                <a href={INVESTOR_MAILTO} className="btn btn-primary w-full justify-center">
-                  Request Investor Deck
-                </a>
-              </div>
             </div>
           </motion.nav>
         )}

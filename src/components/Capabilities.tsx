@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion'
+import { Clock, PackageX, Target, TrendingUp, Users, Warehouse } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 import { capabilities, impact } from '../content'
 import { Section } from './Section'
 
@@ -21,12 +23,14 @@ const capIcons = [
   </svg>,
 ]
 
-const impactColors = [
-  { value: 'text-good', bg: 'bg-good/5', border: 'border-good/20' },
-  { value: 'text-bad', bg: 'bg-bad/5', border: 'border-bad/20' },
-  { value: 'text-accent', bg: 'bg-accent/5', border: 'border-accent/20' },
-  { value: 'text-warning', bg: 'bg-warning/5', border: 'border-warning/20' },
-]
+const impactStyle = [
+  { value: 'text-good', icon: 'bg-good/10 text-good', Icon: TrendingUp },
+  { value: 'text-bad', icon: 'bg-bad/10 text-bad', Icon: PackageX },
+  { value: 'text-accent', icon: 'bg-accent/10 text-accent', Icon: Target },
+  { value: 'text-warning', icon: 'bg-warning/10 text-warning', Icon: Warehouse },
+  { value: 'text-blue-600', icon: 'bg-blue-50 text-blue-600', Icon: Users },
+  { value: 'text-purple-600', icon: 'bg-purple-50 text-purple-600', Icon: Clock },
+] satisfies { value: string; icon: string; Icon: LucideIcon }[]
 
 export function Capabilities() {
   return (
@@ -39,7 +43,7 @@ export function Capabilities() {
           <>
             From insights to action.{' '}
             <br className="hidden sm:block" />
-            Everything your retail teams need.
+            Everything your <span className="hl">retail</span> teams need.
           </>
         }
       >
@@ -80,23 +84,32 @@ export function Capabilities() {
         intro="Typical performance ranges from retailers using AI-powered decision intelligence."
         bg="surface"
       >
-        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-          {impact.map((item, i) => (
-            <motion.div
-              key={item.label}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.08 }}
-              className={`card border ${impactColors[i].border} ${impactColors[i].bg}`}
-            >
-              <p className={`font-serif text-3xl font-bold tabular-nums sm:text-4xl ${impactColors[i].value}`}>
-                {item.value}
-              </p>
-              <p className="mt-2 text-sm font-medium text-ink">{item.label}</p>
-              <p className="mt-0.5 text-xs text-muted">(typical)</p>
-            </motion.div>
-          ))}
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
+          {impact.map((item, i) => {
+            const { Icon } = impactStyle[i]
+            return (
+              <motion.div
+                key={item.label}
+                initial={{ opacity: 0, scale: 0.97 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.06 }}
+                className="card"
+              >
+                <span className={`mb-4 grid h-10 w-10 place-items-center rounded-lg ${impactStyle[i].icon}`}>
+                  <Icon className="h-5 w-5" />
+                </span>
+                <p className={`font-serif text-3xl font-bold tabular-nums sm:text-4xl ${impactStyle[i].value}`}>
+                  {item.value}
+                  {item.unit && (
+                    <span className="ml-1.5 font-sans text-sm font-semibold text-muted">{item.unit}</span>
+                  )}
+                </p>
+                <p className="mt-2 text-sm font-semibold text-ink">{item.label}</p>
+                <p className="mt-1 text-xs text-muted leading-5">{item.body}</p>
+              </motion.div>
+            )
+          })}
         </div>
       </Section>
     </>
