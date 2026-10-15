@@ -23,7 +23,12 @@ export const decisions = [
   {
     label: 'Customer decision',
     title: 'Re-engage 1,260 high-value customers before they’re lost',
-    signals: ['RFM score drops (5.2 → 2.8)', 'Last purchase > 75 days', 'Similar customers already inactive'],
+    signals: [
+      'Engagement and frequency scores have declined',
+      'No transaction in last 75+ days',
+      '62% of lookalike customers have churned in the last 90 days',
+      'Top 20% of customers are of higher CLV',
+    ],
     rec: 'Launch a personalised re-engagement campaign and offer a ₹200 coupon code, valid for 10 days on their preferred product category (e.g. men’s t-shirts).',
     impact: { value: '₹8.4 Lacs', note: 'Expected business impact', chip: '1,260 customers at risk', tone: 'bad' as ImpactTone },
   },
@@ -93,8 +98,7 @@ export const retailCategories = [
 
 export const testimonial = {
   quote: 'As a business, we have so many blind spots that CoDo can help us uncover and bring to our notice for a decision and action.',
-  who: 'Business Head',
-  note: 'Illustrative feedback',
+  who: 'Director of a 25-outlet Fashion/Apparel regional retailer clocking Rs. 1000 cr topline',
   img: u('photo-1573496359142-b8d87734a5a2'),
 }
 

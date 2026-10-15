@@ -141,11 +141,7 @@ export function UseCases() {
             <blockquote className="text-xl font-medium leading-8 text-ink sm:text-2xl sm:leading-9">
               "{testimonial.quote}"
             </blockquote>
-            <figcaption className="mt-5 flex items-center gap-3 text-sm">
-              <span className="font-semibold text-ink">{testimonial.who}</span>
-              <span className="text-line">|</span>
-              <span className="text-muted italic">{testimonial.note}</span>
-            </figcaption>
+            <figcaption className="mt-5 text-sm text-muted">{testimonial.who}</figcaption>
           </div>
         </div>
       </motion.div>
