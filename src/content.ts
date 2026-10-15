@@ -102,14 +102,14 @@ export const team = [
   {
     name: 'Tushar Rele',
     role: 'Founder & CEO',
-    img: '/tushar-rele.jpg',
+    img: '',
     linkedin: 'https://www.linkedin.com/in/tusharrele/',
     bio: 'Having built Blue Ocktopus, a retail loyalty and analytics platform, he is now building CoDo to help retailers move from understanding data to making smarter business decisions. Tushar brings over two decades of experience across product, marketing, business development and strategic alliances in the BFSI domain.',
   },
   {
     name: 'Sudipta Samanta',
     role: 'Co-founder & CTO',
-    img: '/sudipta-samanta.jpg',
+    img: '',
     linkedin: 'https://www.linkedin.com/in/susamanta/',
     bio: 'Sudipta leads CoDo’s technology vision and product engineering, building the foundation for an AI-powered retail decision intelligence platform. His prior experience in technology and engineering brings a focus on scalable systems, technical execution and translating complex requirements into practical solutions.',
   },
